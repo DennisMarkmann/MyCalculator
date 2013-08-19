@@ -1,4 +1,4 @@
-package Taschenrechner;
+package MyCalculator;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
