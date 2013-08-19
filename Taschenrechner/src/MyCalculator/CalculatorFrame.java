@@ -9,33 +9,32 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * Creates a small calculator.
+ * Creates a small calculator GUI.
  * 
  * @author dennis.markmann
  * @since JDK.1.7.0_25
  * @version 1.0
  */
 
-public class CalculatorGui extends JFrame {
+class CalculatorFrame extends JFrame {
+
+    private static final long serialVersionUID = 7676278257630350672L;
 
     private final JButton display;
     private final JPanel panel;
-    private final String lastCommand;
-    private final boolean start;
 
-    public CalculatorGui() {
+    CalculatorFrame(final Controller controller) {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Calculator");
         this.setLayout(new BorderLayout());
-
-        this.lastCommand = "=";
-        this.start = true;
+        this.setLocationRelativeTo(null);
 
         this.display = new JButton("0");
         this.display.setEnabled(false);
         this.add(this.display, BorderLayout.NORTH);
 
-        final ActionListener insert = new InsertActionListener();
-        final ActionListener command = new CommandActionListener(this.start, this.display, this.lastCommand);
+        final ActionListener insert = new InsertActionListener(controller);
+        final ActionListener command = new CommandActionListener(controller);
 
         this.panel = new JPanel();
         this.panel.setLayout(new GridLayout(4, 4));
@@ -63,6 +62,11 @@ public class CalculatorGui extends JFrame {
         this.add(this.panel, BorderLayout.CENTER);
         this.add(this.panel);
         this.pack();
+        this.setVisible(true);
+    }
+
+    public final void setDisplayText(final String text) {
+        this.display.setText(text);
     }
 
     private void addButton(final String label, final ActionListener listener) {
@@ -70,22 +74,4 @@ public class CalculatorGui extends JFrame {
         button.addActionListener(listener);
         this.panel.add(button);
     }
-
-    // private class InsertAction implements ActionListener {
-    //
-    // @Override
-    // public void actionPerformed(final ActionEvent event) {
-    // final String input = event.getActionCommand();
-    // if (CalculatorPanel.this.start) {
-    // CalculatorPanel.this.display.setText("");
-    // CalculatorPanel.this.start = false;
-    // }
-    // CalculatorPanel.this.display.setText(CalculatorPanel.this.display.getText() + input);
-    // }
-    // }
-
-    public void setResult(final double result) {
-        this.display.setText("" + result);
-    }
-
 }

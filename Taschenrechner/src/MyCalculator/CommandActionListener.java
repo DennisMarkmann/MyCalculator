@@ -3,46 +3,42 @@ package MyCalculator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+/**
+ * ActionListener for commands to store.
+ * 
+ * @author dennis.markmann
+ * @since JDK.1.7.0_25
+ * @version 1.0
+ */
 
 class CommandActionListener implements ActionListener {
 
-    private boolean start;
-    private final JButton display;
-    private String lastCommand;
+    private final Controller controller;
 
-    public CommandActionListener(final boolean start, final JButton display, final String lastCommand) {
+    public CommandActionListener(final Controller controller) {
 
-        this.start = start;
-        this.display = display;
-        this.lastCommand = lastCommand;
-
+        this.controller = controller;
     }
 
     @Override
     public void actionPerformed(final ActionEvent event) {
+
+        final Pojo pojo = this.controller.getPojo();
         final String command = event.getActionCommand();
-
-        final JButton buttonClicked = (JButton) event.getSource();
-
-        if (buttonClicked.getName().compareTo("confirmationButton") == 0) {
-        }
 
         // Füge den Präfix "-" an den String an wenn
         // es sich um den ersten Befehl handelt (negative Zahl)
-        if (this.start) {
+        if (pojo.isStart()) {
             if (command.equals("-")) {
-                this.display.setText(command);
-                this.start = false;
+                pojo.setDisplayText(command);
+                pojo.setStart(false);
             } else {
-
-                this.lastCommand = command;
+                pojo.setLastCommand(command);
             }
         } else {
-            // Berechnung ausführen
-            // nwe Co.calculate(Double.parseDouble(this.display.getText()));
-            this.lastCommand = command;
-            this.start = true;
+            this.controller.calculate(Double.parseDouble(pojo.getDisplayText()));
+            pojo.setLastCommand(command);
+            pojo.setStart(true);
         }
     }
 }

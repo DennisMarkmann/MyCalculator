@@ -1,32 +1,44 @@
 package MyCalculator;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
+/**
+ * Controller class for the calculation and initialization.
+ * 
+ * @author dennis.markmann
+ * @since JDK.1.7.0_25
+ * @version 1.0
+ */
 
-public class Controller {
+class Controller {
 
-    public void createGui() {
-        final CalculatorGui gui = new CalculatorGui();
-        gui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        gui.setVisible(true);
+    private CalculatorFrame frame;
+    private Pojo pojo;
+    private double result = 0;
+
+    final void createGui() {
+
+        this.frame = new CalculatorFrame(this);
+        this.pojo = new Pojo(this.frame);
     }
 
-    public void calculate(final double x, final String lastCommand, final JButton display) {
+    final void calculate(final double x) {
 
-        double result = 0;
+        final String lastCommand = this.pojo.getLastCommand();
 
         if (lastCommand.equals("+")) {
-            result += x;
+            this.result += x;
         } else if (lastCommand.equals("-")) {
-            result -= x;
+            this.result -= x;
         } else if (lastCommand.equals("*")) {
-            result *= x;
+            this.result *= x;
         } else if (lastCommand.equals("/")) {
-            result /= x;
+            this.result /= x;
         } else if (lastCommand.equals("=")) {
-            result = x;
+            this.result = x;
         }
-        // this.display.setText("" + this.result);
+        this.pojo.setDisplayText(this.result + "");
     }
 
+    public final Pojo getPojo() {
+        return this.pojo;
+    }
 }
