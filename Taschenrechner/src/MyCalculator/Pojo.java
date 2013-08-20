@@ -1,5 +1,7 @@
 package MyCalculator;
 
+import java.util.Observable;
+
 /**
  * POJO to store the application data.
  * 
@@ -8,7 +10,7 @@ package MyCalculator;
  * @version 1.0
  */
 
-class Pojo {
+class Pojo extends Observable {
 
 	private final CalculatorFrame frame;
 	private String lastCommand = "=";
@@ -16,6 +18,7 @@ class Pojo {
 	private String displayText = "";
 
 	Pojo(final CalculatorFrame frame) {
+		super();
 		this.frame = frame;
 	}
 
@@ -25,7 +28,8 @@ class Pojo {
 
 	public final void setDisplayText(final String displayText) {
 		this.displayText = displayText;
-		this.frame.setDisplayText(displayText);
+		// this.frame.update(this);
+		this.update(displayText);
 	}
 
 	public final String getLastCommand() {
@@ -42,5 +46,13 @@ class Pojo {
 
 	public final void setStart(final boolean start) {
 		this.start = start;
+	}
+
+	public void update(final String text) {
+		// Markierung, daß sich der Text geändert hat
+		super.setChanged();
+		// ruft für alle Beobachter die update-Methode auf
+		super.notifyObservers(text);
+
 	}
 }
