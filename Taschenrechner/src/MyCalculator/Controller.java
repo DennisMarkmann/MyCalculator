@@ -11,18 +11,19 @@ package MyCalculator;
 class Controller {
 
     private CalculatorFrame frame;
-    private Pojo pojo;
+    private Model model;
     private double result = 0;
 
     final void createGui() {
 
         this.frame = new CalculatorFrame(this);
-        this.pojo = new Pojo(this.frame);
+        this.model = new Model();
+        this.model.addObserver(this.frame);
     }
 
     final void calculate(final double x) {
 
-        final String lastCommand = this.pojo.getLastCommand();
+        final String lastCommand = this.model.getLastCommand();
 
         if (lastCommand.equals("+")) {
             this.result += x;
@@ -35,10 +36,10 @@ class Controller {
         } else if (lastCommand.equals("=")) {
             this.result = x;
         }
-        this.pojo.setDisplayText(this.result + "");
+        this.model.setDisplayText(this.result + "");
     }
 
-    public final Pojo getPojo() {
-        return this.pojo;
+    public final Model getModel() {
+        return this.model;
     }
 }

@@ -23,22 +23,22 @@ class CommandActionListener implements ActionListener {
     @Override
     public void actionPerformed(final ActionEvent event) {
 
-        final Pojo pojo = this.controller.getPojo();
+        final Model model = this.controller.getModel();
         final String command = event.getActionCommand();
 
         // Füge den Präfix "-" an den String an wenn
         // es sich um den ersten Befehl handelt (negative Zahl)
-        if (pojo.isStart()) {
+        if (model.isStart()) {
             if (command.equals("-")) {
-                pojo.setDisplayText(command);
-                pojo.setStart(false);
+                model.setDisplayText(command);
+                model.setStart(false);
             } else {
-                pojo.setLastCommand(command);
+                model.setLastCommand(command);
             }
         } else {
-            this.controller.calculate(Double.parseDouble(pojo.getDisplayText()));
-            pojo.setLastCommand(command);
-            pojo.setStart(true);
+            this.controller.calculate(Double.parseDouble(model.getDisplayText()));
+            model.setLastCommand(command);
+            model.setStart(true);
         }
     }
 }

@@ -24,14 +24,14 @@ class InsertActionListener implements ActionListener {
     @Override
     public final void actionPerformed(final ActionEvent event) {
 
-        final Pojo pojo = this.controller.getPojo();
+        final Model model = this.controller.getModel();
 
         final String input = event.getActionCommand();
 
-        if (pojo.isStart()) {
-            pojo.setDisplayText("");
-            pojo.setStart(false);
+        if (model.isStart()) {
+            model.setDisplayText("");
+            model.setStart(false);
         }
-        pojo.setDisplayText(pojo.getDisplayText() + input);
+        model.setDisplayText(model.getDisplayText() + input);
     }
 }
