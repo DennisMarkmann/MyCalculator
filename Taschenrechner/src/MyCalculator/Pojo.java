@@ -28,8 +28,8 @@ class Pojo extends Observable {
 
 	public final void setDisplayText(final String displayText) {
 		this.displayText = displayText;
-		// this.frame.update(this);
-		this.update(displayText);
+		this.frame.update(this);
+		// this.update(displayText);
 	}
 
 	public final String getLastCommand() {

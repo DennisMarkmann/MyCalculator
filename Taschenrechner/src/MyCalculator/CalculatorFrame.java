@@ -24,8 +24,10 @@ class CalculatorFrame extends JFrame implements Observer {
 
 	private final JButton display;
 	private final JPanel panel;
+	private final Controller controller;
 
 	CalculatorFrame(final Controller controller) {
+		this.controller = controller;
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setTitle("Calculator");
 		this.setLayout(new BorderLayout());
@@ -79,6 +81,8 @@ class CalculatorFrame extends JFrame implements Observer {
 
 	@Override
 	public void update(final Observable o, final Object arg) {
+		this.display.setText(this.controller.getPojo().getDisplayText());
+
 		// TODO Auto-generated method stub
 
 	}
