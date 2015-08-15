@@ -10,33 +10,31 @@ package MyCalculator;
 
 class Controller {
 
-    private CalculatorFrame frame;
     private Model model;
-    private double result = 0;
 
     final void createGui() {
 
-        this.frame = new CalculatorFrame(this);
         this.model = new Model();
-        this.model.addObserver(this.frame);
+        this.model.addObserver(new CalculatorFrame(this));
     }
 
     final void calculate(final double x) {
+        double result = 0;
 
         final String lastCommand = this.model.getLastCommand();
 
         if (lastCommand.equals("+")) {
-            this.result += x;
+            result += x;
         } else if (lastCommand.equals("-")) {
-            this.result -= x;
+            result -= x;
         } else if (lastCommand.equals("*")) {
-            this.result *= x;
+            result *= x;
         } else if (lastCommand.equals("/")) {
-            this.result /= x;
+            result /= x;
         } else if (lastCommand.equals("=")) {
-            this.result = x;
+            result = x;
         }
-        this.model.setDisplayText(this.result + "");
+        this.model.setDisplayText(result + "");
     }
 
     public final Model getModel() {
