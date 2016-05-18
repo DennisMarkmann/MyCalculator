@@ -10,6 +10,7 @@ package MyCalculator;
 
 class Controller {
 
+    double result;
     private Model model;
 
     final void createGui() {
@@ -19,7 +20,6 @@ class Controller {
     }
 
     final void calculate(final double x) {
-        double result = 0;
 
         final String lastCommand = this.model.getLastCommand();
 

@@ -29,12 +29,12 @@ class CommandActionListener implements ActionListener {
         // Füge den Präfix "-" an den String an wenn
         // es sich um den ersten Befehl handelt (negative Zahl)
         if (model.isStart()) {
-            if (command.equals("-")) {
-                model.setDisplayText(command);
-                model.setStart(false);
-            } else {
-                model.setLastCommand(command);
-            }
+            // if (command.equals("-")) {
+            // model.setDisplayText(command);
+            // model.setStart(false);
+            // } else {
+            model.setLastCommand(command);
+            // }
         } else {
             this.controller.calculate(Double.parseDouble(model.getDisplayText()));
             model.setLastCommand(command);

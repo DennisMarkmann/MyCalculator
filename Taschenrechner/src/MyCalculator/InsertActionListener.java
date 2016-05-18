@@ -28,10 +28,10 @@ class InsertActionListener implements ActionListener {
 
         final String input = event.getActionCommand();
 
-        if (model.isStart()) {
-            model.setDisplayText("");
-            model.setStart(false);
-        }
+        // if (model.isStart()) {
+        // model.setDisplayText("");
+        // model.setStart(false);
+        // }
         model.setDisplayText(model.getDisplayText() + input);
     }
 }
