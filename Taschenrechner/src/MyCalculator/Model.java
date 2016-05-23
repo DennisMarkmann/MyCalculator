@@ -6,7 +6,6 @@ import java.util.Observable;
  * POJO to store the application data.
  * 
  * @author dennis.markmann
- * @since JDK.1.7.0_25
  * @version 1.0
  */
 

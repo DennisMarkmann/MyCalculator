@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
  * ActionListener for commands to store.
  * 
  * @author dennis.markmann
- * @since JDK.1.7.0_25
  * @version 1.0
  */
 

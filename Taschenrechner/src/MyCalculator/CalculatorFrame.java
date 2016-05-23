@@ -14,7 +14,6 @@ import javax.swing.JPanel;
  * Creates a small calculator GUI.
  * 
  * @author dennis.markmann
- * @since JDK.1.7.0_25
  * @version 1.0
  */
 

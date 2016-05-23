@@ -6,7 +6,6 @@ import java.io.IOException;
  * Main class for the project.
  * 
  * @author dennis.markmann
- * @since JDK.1.7.0_25
  * @version 1.0
  */
 

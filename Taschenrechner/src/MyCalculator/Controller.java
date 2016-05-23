@@ -4,7 +4,6 @@ package MyCalculator;
  * Controller class for the calculation and initialization.
  * 
  * @author dennis.markmann
- * @since JDK.1.7.0_25
  * @version 1.0
  */
 
