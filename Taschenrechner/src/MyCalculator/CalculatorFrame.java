@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 /**
  * Creates a small calculator GUI.
- * 
+ *
  * @author dennis.markmann
  * @version 1.0
  */
@@ -68,15 +68,15 @@ class CalculatorFrame extends JFrame implements Observer {
         this.setVisible(true);
     }
 
-    @Override
-    public void update(final Observable o, final Object arg) {
-        this.display.setText(this.controller.getModel().getDisplayText());
-    }
-
     private void addButton(final String label, final ActionListener listener) {
         final JButton button = new JButton(label);
         button.addActionListener(listener);
         this.panel.add(button);
+    }
+
+    @Override
+    public void update(final Observable o, final Object arg) {
+        this.display.setText(this.controller.getModel().getDisplayText());
     }
 
 }
